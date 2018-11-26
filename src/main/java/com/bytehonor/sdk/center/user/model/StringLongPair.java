@@ -5,6 +5,10 @@ public class StringLongPair {
 	private String key;
 
 	private long value;
+	
+	public StringLongPair() {
+		this.value = -1;
+	}
 
 	public String getKey() {
 		return key;

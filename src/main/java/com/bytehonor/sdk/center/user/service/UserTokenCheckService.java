@@ -4,5 +4,5 @@ import com.bytehonor.sdk.center.user.model.UserToken;
 
 public interface UserTokenCheckService {
 
-	public boolean isUserTokenOk(UserToken userToken, String fromTerminal);
+	public boolean isEffective(UserToken userToken, String fromTerminal);
 }

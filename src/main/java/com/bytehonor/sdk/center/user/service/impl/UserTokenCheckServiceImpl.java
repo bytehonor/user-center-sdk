@@ -24,26 +24,26 @@ public class UserTokenCheckServiceImpl implements UserTokenCheckService {
 	}
 
 	@Override
-	public boolean isUserTokenOk(UserToken userToken, String fromTerminal) {
+	public boolean isEffective(UserToken userToken, String fromTerminal) {
 		String key = RedisCacheUtils.buildKey(userToken.getProfileType(), fromTerminal);
 		Object val = redisTemplate.opsForHash().get(key, userToken.getGuid());
 		if (val == null) {
-			LOG.info("cache val is null");
-			return false;
+			LOG.debug("cache val is null");
+			throw new RuntimeException("cache val is null");
 		}
 		StringLongPair pair = RedisCacheUtils.parseValue(String.valueOf(val));
 		if (pair == null || StringUtils.isEmpty(pair.getKey())) {
-			LOG.info("cache parse invalid");
-			return false;
+			LOG.debug("cache parse invalid");
+			throw new RuntimeException("cache parse invalid");
 		}
 		if (pair.getKey().equals(userToken.getToken())) {
-			LOG.info("token is invalid");
-			return false;
+			LOG.debug("token is invalid");
+			throw new RuntimeException("token is invalid");
 		}
 		long now = System.currentTimeMillis();
 		if (now > pair.getValue()) {
-			LOG.info("token is expired");
-			return false;
+			LOG.debug("token is expired");
+			throw new RuntimeException("token is expired");
 		}
 		return true;
 	}
