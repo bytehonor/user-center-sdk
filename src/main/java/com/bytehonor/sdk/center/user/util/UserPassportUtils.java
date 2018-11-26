@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.util.StringUtils;
 
-import com.bytehonor.protocol.common.server.constant.HeaderKey;
+import com.bytehonor.sdk.center.user.constant.UserHeaderKey;
 import com.bytehonor.sdk.center.user.model.UserPassport;
 
 public class UserPassportUtils {
@@ -27,7 +27,7 @@ public class UserPassportUtils {
 	}
 
 	public static UserPassport get(HttpServletRequest request) {
-		String val = request.getHeader(HeaderKey.x_USER_PASSPORT);
+		String val = request.getHeader(UserHeaderKey.x_USER_PASSPORT);
 		UserPassport up = new UserPassport();
 		if (StringUtils.isEmpty(val)) {
 			return up;
