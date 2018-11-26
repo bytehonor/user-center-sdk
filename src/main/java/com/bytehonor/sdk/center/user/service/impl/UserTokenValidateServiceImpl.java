@@ -9,16 +9,16 @@ import org.springframework.util.StringUtils;
 
 import com.bytehonor.sdk.center.user.model.StringLongPair;
 import com.bytehonor.sdk.center.user.model.UserToken;
-import com.bytehonor.sdk.center.user.service.UserTokenCheckService;
+import com.bytehonor.sdk.center.user.service.UserTokenValidateService;
 import com.bytehonor.sdk.center.user.util.RedisCacheUtils;
 
-public class UserTokenCheckServiceImpl implements UserTokenCheckService {
+public class UserTokenValidateServiceImpl implements UserTokenValidateService {
 
-	private static final Logger LOG = LoggerFactory.getLogger(UserTokenCheckServiceImpl.class);
+	private static final Logger LOG = LoggerFactory.getLogger(UserTokenValidateServiceImpl.class);
 
 	private RedisTemplate<String, Serializable> redisTemplate;
 
-	public UserTokenCheckServiceImpl(RedisTemplate<String, Serializable> redisTemplate) {
+	public UserTokenValidateServiceImpl(RedisTemplate<String, Serializable> redisTemplate) {
 		LOG.info("construct");
 		this.redisTemplate = redisTemplate;
 	}
@@ -36,7 +36,7 @@ public class UserTokenCheckServiceImpl implements UserTokenCheckService {
 			LOG.debug("cache parse invalid");
 			throw new RuntimeException("cache parse invalid");
 		}
-		if (pair.getKey().equals(userToken.getToken())) {
+		if (pair.getKey().equals(userToken.getToken()) == false) {
 			LOG.debug("token is invalid");
 			throw new RuntimeException("token is invalid");
 		}
