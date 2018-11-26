@@ -1,5 +1,7 @@
 package com.bytehonor.sdk.center.user.model;
 
+import com.bytehonor.sdk.center.user.constant.UserProfileTypeEnum;
+
 public class UserToken {
 
 	private Boolean debug;
@@ -10,12 +12,9 @@ public class UserToken {
 
 	private Integer profileType;
 
-//	private String fromTerminal;
-//
-//	private String fromIp;
-	
 	public UserToken() {
 		this.debug = false;
+		this.profileType = UserProfileTypeEnum.UNKNOWN.getType();
 	}
 
 	public Boolean getDebug() {
@@ -50,20 +49,20 @@ public class UserToken {
 		this.profileType = profileType;
 	}
 
-//	public String getFromTerminal() {
-//		return fromTerminal;
-//	}
-//
-//	public void setFromTerminal(String fromTerminal) {
-//		this.fromTerminal = fromTerminal;
-//	}
-//
-//	public String getFromIp() {
-//		return fromIp;
-//	}
-//
-//	public void setFromIp(String fromIp) {
-//		this.fromIp = fromIp;
-//	}
+	// public String getFromTerminal() {
+	// return fromTerminal;
+	// }
+	//
+	// public void setFromTerminal(String fromTerminal) {
+	// this.fromTerminal = fromTerminal;
+	// }
+	//
+	// public String getFromIp() {
+	// return fromIp;
+	// }
+	//
+	// public void setFromIp(String fromIp) {
+	// this.fromIp = fromIp;
+	// }
 
 }

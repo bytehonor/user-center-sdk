@@ -9,7 +9,7 @@ import com.bytehonor.sdk.center.user.model.UserPassport;
 
 public class UserPassportUtils {
 
-	private static final String CON = "@";
+	private static final String CON = "&";
 
 	public static UserPassport build(Integer profileType, String guid, String fromIp, String fromTerminal) {
 		UserPassport up = new UserPassport();
@@ -27,7 +27,7 @@ public class UserPassportUtils {
 	}
 
 	public static UserPassport get(HttpServletRequest request) {
-		String val = request.getHeader(UserHeaderKey.x_USER_PASSPORT);
+		String val = request.getHeader(UserHeaderKey.X_USER_PASSPORT);
 		UserPassport up = new UserPassport();
 		if (StringUtils.isEmpty(val)) {
 			return up;
