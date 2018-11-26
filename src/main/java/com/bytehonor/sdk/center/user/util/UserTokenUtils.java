@@ -17,9 +17,9 @@ public class UserTokenUtils {
 
 	public static UserToken build(HttpServletRequest request) {
 		UserToken ut = new UserToken();
-		String debug = request.getParameter("debug");
-		boolean isDebug = "true".equals(debug);
-		if (isDebug) {
+		boolean debug = "true".equals(request.getParameter("debug"));
+		ut.setDebug(debug);
+		if (debug) {
 			return ut;
 		}
 
@@ -31,7 +31,7 @@ public class UserTokenUtils {
 		if (StringUtils.isEmpty(auth)) {
 			throw new RuntimeException("Authentication is null");
 		}
-		
+
 		String[] arr = auth.split(CON);
 		if (arr == null || arr.length < 3) {
 			throw new RuntimeException("Authentication is invalid");
