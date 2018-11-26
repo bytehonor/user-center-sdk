@@ -11,6 +11,8 @@ import com.bytehonor.sdk.center.user.model.UserToken;
 public class UserTokenUtils {
 
 	private static final Logger LOG = LoggerFactory.getLogger(UserTokenUtils.class);
+	
+	private static final String CON = "@";
 
 	public static UserToken build(HttpServletRequest request) {
 		UserToken ut = new UserToken();
@@ -25,7 +27,7 @@ public class UserTokenUtils {
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("Authentication:{}", auth);
 		}
-		String[] arr = auth.split("@");
+		String[] arr = auth.split(CON);
 		if (arr.length < 3) {
 			throw new RuntimeException("Authentication is invalid");
 		}

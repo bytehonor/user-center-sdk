@@ -9,7 +9,7 @@ import com.bytehonor.sdk.center.user.model.UserPassport;
 
 public class UserPassportUtils {
 
-	private static final String CON = "-";
+	private static final String CON = "@";
 
 	public static UserPassport build(Integer profileType, String guid, String fromIp, String fromTerminal) {
 		UserPassport up = new UserPassport();
