@@ -11,7 +11,7 @@ import com.bytehonor.sdk.center.user.model.UserToken;
 public class UserTokenUtils {
 
 	private static final Logger LOG = LoggerFactory.getLogger(UserTokenUtils.class);
-	
+
 	private static final String CON = "@";
 
 	public static UserToken build(HttpServletRequest request) {
@@ -28,7 +28,7 @@ public class UserTokenUtils {
 			LOG.debug("Authentication:{}", auth);
 		}
 		String[] arr = auth.split(CON);
-		if (arr.length < 3) {
+		if (arr == null || arr.length < 3) {
 			throw new RuntimeException("Authentication is invalid");
 		}
 		Integer typeVal = Integer.valueOf(arr[0]);
@@ -36,16 +36,12 @@ public class UserTokenUtils {
 		if (UserProfileTypeEnum.UNKNOWN.getType() == type.getType()) {
 			throw new RuntimeException("Authentication content is invalid");
 		}
-//		String fromTerminal = UserTerminalUtils.getFromTerminal(request);
-//		String fromIp = UserTerminalUtils.getFromIp(request);
-		
+
 		String guid = arr[1];
 		String token = arr[2];
 		ut.setGuid(guid);
 		ut.setToken(token);
 		ut.setProfileType(typeVal);
-//		ut.setFromIp(fromIp);
-//		ut.setFromTerminal(fromTerminal);
 		return ut;
 	}
 
