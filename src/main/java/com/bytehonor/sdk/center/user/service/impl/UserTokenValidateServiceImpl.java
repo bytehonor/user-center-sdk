@@ -37,12 +37,12 @@ public class UserTokenValidateServiceImpl implements UserTokenValidateService {
 			throw new RuntimeException("cache parse invalid");
 		}
 		if (pair.getKey().equals(userToken.getToken()) == false) {
-			LOG.debug("token is invalid");
+			LOG.info("token is invalid, cache:{}, upload:{}", pair.getKey(), userToken.getToken());
 			throw new RuntimeException("token is invalid");
 		}
 		long now = System.currentTimeMillis();
 		if (now > pair.getValue()) {
-			LOG.debug("token is expired");
+			LOG.info("token is expired, upload:{}, expireAt:{}", userToken.getToken(), pair.getValue());
 			throw new RuntimeException("token is expired");
 		}
 		return true;
