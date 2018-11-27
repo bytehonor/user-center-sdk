@@ -6,7 +6,7 @@ import com.bytehonor.sdk.center.user.model.StringLongPair;
 
 public class RedisCacheUtils {
 
-	public static final String KEY_PREFIX = "global:user-token-hash:";
+	public static final String KEY_PREFIX = "global:hash:user-token:";
 
 	private static final String M = ":";
 
