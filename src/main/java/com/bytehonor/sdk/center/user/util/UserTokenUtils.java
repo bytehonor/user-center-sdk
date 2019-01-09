@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
-import com.bytehonor.sdk.center.user.constant.UserProfileTypeEnum;
+import com.bytehonor.sdk.center.user.constant.UserProfileEnum;
 import com.bytehonor.sdk.center.user.model.UserToken;
 
 public class UserTokenUtils {
@@ -37,8 +37,8 @@ public class UserTokenUtils {
 			throw new RuntimeException("Authentication is invalid");
 		}
 		Integer typeVal = Integer.valueOf(arr[0]);
-		UserProfileTypeEnum type = UserProfileTypeEnum.typeOf(typeVal);
-		if (UserProfileTypeEnum.UNKNOWN.getType() == type.getType()) {
+		UserProfileEnum type = UserProfileEnum.typeOf(typeVal);
+		if (UserProfileEnum.UNKNOWN.getType() == type.getType()) {
 			throw new RuntimeException("Authentication type is invalid");
 		}
 

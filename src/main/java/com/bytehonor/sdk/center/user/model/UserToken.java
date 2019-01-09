@@ -1,6 +1,6 @@
 package com.bytehonor.sdk.center.user.model;
 
-import com.bytehonor.sdk.center.user.constant.UserProfileTypeEnum;
+import com.bytehonor.sdk.center.user.constant.UserProfileEnum;
 
 public class UserToken {
 
@@ -14,7 +14,7 @@ public class UserToken {
 
 	public UserToken() {
 		this.debug = false;
-		this.profileType = UserProfileTypeEnum.UNKNOWN.getType();
+		this.profileType = UserProfileEnum.UNKNOWN.getType();
 	}
 
 	public Boolean getDebug() {
