@@ -1,6 +1,7 @@
 package com.bytehonor.sdk.center.user.service.impl;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,12 +20,13 @@ public class UserTokenValidateServiceImpl implements UserTokenValidateService {
 	private RedisTemplate<String, Serializable> redisTemplate;
 
 	public UserTokenValidateServiceImpl(RedisTemplate<String, Serializable> redisTemplate) {
-		LOG.info("construct");
 		this.redisTemplate = redisTemplate;
 	}
 
 	@Override
 	public boolean isEffective(UserToken userToken, String fromTerminal) {
+	    Objects.requireNonNull(userToken, "userToken");
+        Objects.requireNonNull(fromTerminal, "fromTerminal");
 		String key = RedisCacheUtils.buildKey(userToken.getProfileType(), fromTerminal);
 		Object val = redisTemplate.opsForHash().get(key, userToken.getGuid());
 		if (val == null) {

@@ -32,7 +32,7 @@ public class UserPassportUtilsTest {
 		int total = 1000;
 		long start1 = System.nanoTime();
 		for (int i = 0; i < total; i++) {
-			UserPassportUtils.split(src);
+			UserPassportUtils.split(src, '&');
 		}
 		long cost1 = System.nanoTime() - start1;
 
