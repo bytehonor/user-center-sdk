@@ -4,9 +4,11 @@ import com.bytehonor.sdk.center.user.model.AccessToken;
 
 public interface AccessTokenCacheService {
 
-	public void save(AccessToken userToken, long expireAt);
-	
-	public Object get(AccessToken userToken);
-	
-	public void remove(AccessToken userToken);
+    public void save(Integer terminalType, String terminalName, String guid, String token, long expireAt);
+
+    public void save(AccessToken userToken, long expireAt);
+
+    public Object get(AccessToken userToken);
+
+    public void remove(AccessToken userToken);
 }

@@ -1,12 +1,12 @@
 package com.bytehonor.sdk.center.user.constant;
 
 /**
- * UserProfileEnum
+ * TerminalEnum
  * 
  * @author lijianqiang
  *
  */
-public enum UserProfileEnum {
+public enum TerminalEnum {
 	UNKNOWN(0, "UNKNOWN"),
 
 	HUAJIETAOJIN_WECHAT(1, "HUAJIETAOJIN_WECHAT"),
@@ -17,26 +17,26 @@ public enum UserProfileEnum {
 
 	;
 
-	private final int type;
+	private final int key;
 
 	private final String name;
 
-	UserProfileEnum(int type, String name) {
-		this.type = type;
+	TerminalEnum(int key, String name) {
+		this.key = key;
 		this.name = name;
 	}
 
-	public int getType() {
-		return type;
+	public int getKey() {
+		return key;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public static UserProfileEnum typeOf(int type) {
-		for (UserProfileEnum bean : values()) {
-			if (bean.type == type) {
+	public static TerminalEnum keyOf(int key) {
+		for (TerminalEnum bean : values()) {
+			if (bean.key == key) {
 				return bean;
 			}
 		}

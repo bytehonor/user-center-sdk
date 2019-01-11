@@ -12,7 +12,7 @@ public class RedisCacheUtils {
 
     /**
      * <pre>
-     * key = KEY_PREFIX + {profileType}:{fromTerminal},
+     * key = KEY_PREFIX + {terminalType}:{terminalName},
      * field = guid,
      * value = token + timestamp,
      * </pre>
@@ -20,9 +20,9 @@ public class RedisCacheUtils {
      * @param userToken
      * @return
      */
-    public static String buildKey(Integer profileType, String fromTerminal) {
+    public static String buildKey(Integer terminalType, String terminalName) {
         StringBuilder sb = new StringBuilder();
-        sb.append(KEY_PREFIX).append(profileType).append(M).append(fromTerminal);
+        sb.append(KEY_PREFIX).append(terminalType).append(M).append(terminalName);
         return sb.toString();
     }
 
