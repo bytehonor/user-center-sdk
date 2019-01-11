@@ -1,5 +1,7 @@
 package com.bytehonor.sdk.center.user.util;
 
+import java.util.List;
+
 import org.springframework.util.StringUtils;
 
 import com.bytehonor.sdk.center.user.model.StringLongPair;
@@ -8,7 +10,7 @@ public class RedisCacheUtils {
 
     public static final String KEY_PREFIX = "global:hash:user-token:";
 
-    private static final String M = ":";
+    private static final char M = ':';
 
     /**
      * <pre>
@@ -37,12 +39,12 @@ public class RedisCacheUtils {
         if (StringUtils.isEmpty(val)) {
             return res;
         }
-        String[] arr = val.split(M);
-        if (arr == null || arr.length != 2) {
+        List<String> list = UserPassportUtils.split(val, M);
+        if (list == null || list.size() != 2) {
             return res;
         }
-        res.setKey(arr[0]);
-        res.setValue(Long.valueOf(arr[1]));
+        res.setKey(list.get(0));
+        res.setValue(Long.valueOf(list.get(1)));
         return res;
     }
 }
