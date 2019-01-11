@@ -55,7 +55,7 @@ public class AccessToken {
         return terminalName;
     }
 
-    public void setFromTerminal(String terminalName) {
+    public void setTerminalName(String terminalName) {
         this.terminalName = terminalName;
     }
 

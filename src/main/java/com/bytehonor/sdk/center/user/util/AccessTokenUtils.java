@@ -24,7 +24,7 @@ public class AccessTokenUtils {
         Objects.requireNonNull(fromTerminal, "fromTerminal");
 
         AccessToken accessToken = new AccessToken();
-        accessToken.setFromTerminal(fromTerminal);
+        accessToken.setTerminalName(fromTerminal);
         boolean debug = TRUE.equals(request.getParameter("debug"));
         accessToken.setDebug(debug);
         if (debug) {
