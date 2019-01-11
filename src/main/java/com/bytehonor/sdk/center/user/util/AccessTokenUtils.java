@@ -7,24 +7,28 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.StringUtils;
 
 import com.bytehonor.sdk.center.user.constant.UserProfileEnum;
-import com.bytehonor.sdk.center.user.model.UserToken;
+import com.bytehonor.sdk.center.user.model.AccessToken;
 
-public class UserTokenUtils {
+public class AccessTokenUtils {
 
-    private static final Logger LOG = LoggerFactory.getLogger(UserTokenUtils.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AccessTokenUtils.class);
 
     private static final char CON = '@';
 
-    public static UserToken build(HttpServletRequest request) {
+    private static final String TRUE = "true";
+
+    public static AccessToken build(HttpServletRequest request, String fromTerminal) {
         Objects.requireNonNull(request, "request");
-        UserToken ut = new UserToken();
-        boolean debug = "true".equals(request.getParameter("debug"));
-        ut.setDebug(debug);
+        Objects.requireNonNull(fromTerminal, "fromTerminal");
+
+        AccessToken accessToken = new AccessToken();
+        accessToken.setFromTerminal(fromTerminal);
+        boolean debug = TRUE.equals(request.getParameter("debug"));
+        accessToken.setDebug(debug);
         if (debug) {
-            return ut;
+            return accessToken;
         }
 
         // 1@guid@token
@@ -32,9 +36,7 @@ public class UserTokenUtils {
         if (LOG.isDebugEnabled()) {
             LOG.debug("Authentication:{}", auth);
         }
-        if (StringUtils.isEmpty(auth)) {
-            throw new RuntimeException("Authentication is null");
-        }
+        Objects.requireNonNull(auth, "Authentication");
 
         List<String> list = UserPassportUtils.split(auth, CON);
         if (list == null || list.size() < 3) {
@@ -48,10 +50,10 @@ public class UserTokenUtils {
 
         String guid = list.get(1);
         String token = list.get(2);
-        ut.setGuid(guid);
-        ut.setToken(token);
-        ut.setProfileType(typeVal);
-        return ut;
+        accessToken.setGuid(guid);
+        accessToken.setToken(token);
+        accessToken.setProfileType(typeVal);
+        return accessToken;
     }
 
 }
