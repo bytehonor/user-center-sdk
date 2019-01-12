@@ -4,7 +4,7 @@ public class UserPassport {
 
 	private String guid;
 
-	private Integer profileType;
+	private Integer roleKey;
 
 	private String fromTerminal;
 
@@ -18,12 +18,12 @@ public class UserPassport {
 		this.guid = guid;
 	}
 
-	public Integer getProfileType() {
-		return profileType;
+	public Integer getRoleKey() {
+		return roleKey;
 	}
 
-	public void setProfileType(Integer profileType) {
-		this.profileType = profileType;
+	public void setRoleKey(Integer roleKey) {
+		this.roleKey = roleKey;
 	}
 
 	public String getFromTerminal() {

@@ -15,8 +15,8 @@ public class UserPassportUtils {
 
     private static final char CON = '&';
 
-    public static UserPassport build(Integer profileType, String guid, String fromIp, String fromTerminal) {
-        Objects.requireNonNull(profileType, "profileType");
+    public static UserPassport build(Integer roleKey, String guid, String fromIp, String fromTerminal) {
+        Objects.requireNonNull(roleKey, "roleKey");
         Objects.requireNonNull(guid, "guid");
         Objects.requireNonNull(fromIp, "fromIp");
         Objects.requireNonNull(fromTerminal, "fromTerminal");
@@ -25,17 +25,17 @@ public class UserPassportUtils {
         up.setFromIp(fromIp);
         up.setFromTerminal(fromTerminal);
         up.setGuid(guid);
-        up.setProfileType(profileType);
+        up.setRoleKey(roleKey);
         return up;
     }
 
-    public static String toString(Integer profileType, String guid, String fromTerminal, String fromIp) {
-        Objects.requireNonNull(profileType, "profileType");
+    public static String toString(Integer roleKey, String guid, String fromTerminal, String fromIp) {
+        Objects.requireNonNull(roleKey, "roleKey");
         Objects.requireNonNull(guid, "guid");
         Objects.requireNonNull(fromIp, "fromIp");
         Objects.requireNonNull(fromTerminal, "fromTerminal");
         StringBuilder sb = new StringBuilder();
-        sb.append(profileType).append(CON).append(guid).append(CON).append(fromTerminal).append(CON).append(fromIp);
+        sb.append(roleKey).append(CON).append(guid).append(CON).append(fromTerminal).append(CON).append(fromIp);
         return sb.toString();
     }
 
@@ -55,7 +55,7 @@ public class UserPassportUtils {
         if (list == null || list.size() != 4) {
             return up;
         }
-        up.setProfileType(Integer.valueOf(list.get(0)));
+        up.setRoleKey(Integer.valueOf(list.get(0)));
         up.setGuid(list.get(1));
         up.setFromTerminal(list.get(2));
         up.setFromIp(list.get(3));

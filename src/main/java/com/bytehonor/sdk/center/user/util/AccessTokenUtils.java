@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bytehonor.sdk.center.user.constant.TerminalEnum;
+import com.bytehonor.sdk.center.user.constant.UserRoleEnum;
 import com.bytehonor.sdk.center.user.model.AccessToken;
 
 public class AccessTokenUtils {
@@ -24,7 +24,7 @@ public class AccessTokenUtils {
         Objects.requireNonNull(fromTerminal, "fromTerminal");
 
         AccessToken accessToken = new AccessToken();
-        accessToken.setTerminalName(fromTerminal);
+        accessToken.setFromTerminal(fromTerminal);
         boolean debug = TRUE.equals(request.getParameter("debug"));
         accessToken.setDebug(debug);
         if (debug) {
@@ -43,16 +43,13 @@ public class AccessTokenUtils {
             throw new RuntimeException("Authentication is invalid");
         }
         Integer typeVal = Integer.valueOf(list.get(0));
-        TerminalEnum type = TerminalEnum.keyOf(typeVal);
-        if (TerminalEnum.UNKNOWN.getKey() == type.getKey()) {
-            throw new RuntimeException("Authentication type is invalid");
-        }
+        UserRoleEnum role = UserRoleEnum.keyOf(typeVal);
 
         String guid = list.get(1);
         String token = list.get(2);
         accessToken.setGuid(guid);
         accessToken.setToken(token);
-        accessToken.setTerminalKey(typeVal);
+        accessToken.setRoleKey(role.getKey());
         return accessToken;
     }
 

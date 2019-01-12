@@ -26,12 +26,12 @@ public class AccessTokenValidateServiceImpl implements AccessTokenValidateServic
     @Override
     public boolean isEffective(AccessToken userToken) {
         Objects.requireNonNull(userToken, "userToken");
-        Objects.requireNonNull(userToken.getTerminalKey(), "profileType");
-        Objects.requireNonNull(userToken.getTerminalName(), "fromTerminal");
+        Objects.requireNonNull(userToken.getRoleKey(), "roleKey");
+        Objects.requireNonNull(userToken.getFromTerminal(), "fromTerminal");
         Objects.requireNonNull(userToken.getToken(), "token");
         Objects.requireNonNull(userToken.getGuid(), "guid");
 
-        String key = RedisCacheUtils.buildKey(userToken.getTerminalKey(), userToken.getTerminalName());
+        String key = RedisCacheUtils.buildKey(userToken.getRoleKey(), userToken.getFromTerminal());
         Object val = redisTemplate.opsForHash().get(key, userToken.getGuid());
         if (val == null) {
             LOG.debug("cache val is null");

@@ -1,6 +1,6 @@
 package com.bytehonor.sdk.center.user.model;
 
-import com.bytehonor.sdk.center.user.constant.TerminalEnum;
+import com.bytehonor.sdk.center.user.constant.UserRoleEnum;
 
 public class AccessToken {
 
@@ -10,13 +10,13 @@ public class AccessToken {
 
     private String token;
 
-    private Integer terminalKey;
+    private Integer roleKey;
 
-    private String terminalName;
+    private String fromTerminal;
 
     public AccessToken() {
         this.debug = false;
-        this.terminalKey = TerminalEnum.UNKNOWN.getKey();
+        this.roleKey = UserRoleEnum.BYTEHONOR_USER.getKey();
     }
 
     public Boolean getDebug() {
@@ -43,20 +43,20 @@ public class AccessToken {
         this.token = token;
     }
 
-    public Integer getTerminalKey() {
-        return terminalKey;
+    public Integer getRoleKey() {
+        return roleKey;
     }
 
-    public void setTerminalKey(Integer terminalKey) {
-        this.terminalKey = terminalKey;
+    public void setRoleKey(Integer roleKey) {
+        this.roleKey = roleKey;
     }
 
-    public String getTerminalName() {
-        return terminalName;
+    public String getFromTerminal() {
+        return fromTerminal;
     }
 
-    public void setTerminalName(String terminalName) {
-        this.terminalName = terminalName;
+    public void setFromTerminal(String fromTerminal) {
+        this.fromTerminal = fromTerminal;
     }
 
 }
