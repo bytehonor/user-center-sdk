@@ -9,11 +9,11 @@ package com.bytehonor.sdk.center.user.constant;
 public enum UserRoleEnum {
     BYTEHONOR_USER(0, "BYTEHONOR_USER"),
 
-    HJTJ_CONSUMER(1, "HJTJ_CONSUMER"),
+    CONSUMER(1, "CONSUMER"),
 
-    HJTJ_MERCHANT(2, "HJTJ_MERCHANT"),
+    MERCHANT(2, "CONSUMER"),
 
-    HJTJ_ADMIN(3, "HJTJ_ADMIN"),
+    ADMIN(3, "CONSUMER"),
 
     ;
 
@@ -40,7 +40,7 @@ public enum UserRoleEnum {
                 return bean;
             }
         }
-        return BYTEHONOR_USER;
+        return null;
     }
 
 }
