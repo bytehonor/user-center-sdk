@@ -2,44 +2,34 @@ package com.bytehonor.sdk.center.user.model;
 
 public class UserPassport {
 
-	private String guid;
+    private String uuid;
 
-	private Integer roleKey;
+    private String fromTerminal;
 
-	private String fromTerminal;
+    private String fromIp;
 
-	private String fromIp;
+    public String getUuid() {
+        return uuid;
+    }
 
-	public String getGuid() {
-		return guid;
-	}
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
-	public void setGuid(String guid) {
-		this.guid = guid;
-	}
+    public String getFromTerminal() {
+        return fromTerminal;
+    }
 
-	public Integer getRoleKey() {
-		return roleKey;
-	}
+    public void setFromTerminal(String fromTerminal) {
+        this.fromTerminal = fromTerminal;
+    }
 
-	public void setRoleKey(Integer roleKey) {
-		this.roleKey = roleKey;
-	}
+    public String getFromIp() {
+        return fromIp;
+    }
 
-	public String getFromTerminal() {
-		return fromTerminal;
-	}
-
-	public void setFromTerminal(String fromTerminal) {
-		this.fromTerminal = fromTerminal;
-	}
-
-	public String getFromIp() {
-		return fromIp;
-	}
-
-	public void setFromIp(String fromIp) {
-		this.fromIp = fromIp;
-	}
+    public void setFromIp(String fromIp) {
+        this.fromIp = fromIp;
+    }
 
 }

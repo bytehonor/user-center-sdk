@@ -17,17 +17,19 @@ apply plugin: 'io.spring.dependency-management'
 apply from: 'repository.gradle'
 
 group = 'com.bytehonor.sdk'
-version = '0.1.4'
+version = '0.2.0'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
 repositories {
 	mavenCentral()
+	maven { url "http://maven.huajietaojin.cn/repository/bytehonor-releases/" }
 }
 
 
 dependencies {
+    implementation('com.bytehonor.sdk:common-protocol-sdk:3.4.3')
 	implementation('org.springframework.boot:spring-boot-starter-web')
 	implementation('org.springframework.boot:spring-boot-starter-data-redis')
 	annotationProcessor('org.springframework.boot:spring-boot-configuration-processor')

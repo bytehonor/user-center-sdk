@@ -15,27 +15,24 @@ public class UserPassportUtils {
 
     private static final char CON = '&';
 
-    public static UserPassport build(Integer roleKey, String guid, String fromIp, String fromTerminal) {
-        Objects.requireNonNull(roleKey, "roleKey");
-        Objects.requireNonNull(guid, "guid");
+    public static UserPassport build(String uuid, String fromIp, String fromTerminal) {
+        Objects.requireNonNull(uuid, "uuid");
         Objects.requireNonNull(fromIp, "fromIp");
         Objects.requireNonNull(fromTerminal, "fromTerminal");
 
         UserPassport up = new UserPassport();
         up.setFromIp(fromIp);
         up.setFromTerminal(fromTerminal);
-        up.setGuid(guid);
-        up.setRoleKey(roleKey);
+        up.setUuid(uuid);
         return up;
     }
 
-    public static String toString(Integer roleKey, String guid, String fromTerminal, String fromIp) {
-        Objects.requireNonNull(roleKey, "roleKey");
-        Objects.requireNonNull(guid, "guid");
+    public static String toString(String uuid, String fromTerminal, String fromIp) {
+        Objects.requireNonNull(uuid, "uuid");
         Objects.requireNonNull(fromIp, "fromIp");
         Objects.requireNonNull(fromTerminal, "fromTerminal");
         StringBuilder sb = new StringBuilder();
-        sb.append(roleKey).append(CON).append(guid).append(CON).append(fromTerminal).append(CON).append(fromIp);
+        sb.append(uuid).append(CON).append(fromTerminal).append(CON).append(fromIp);
         return sb.toString();
     }
 
@@ -52,13 +49,12 @@ public class UserPassportUtils {
             return up;
         }
         List<String> list = split(val, CON);
-        if (list == null || list.size() != 4) {
+        if (list == null || list.size() != 3) {
             return up;
         }
-        up.setRoleKey(Integer.valueOf(list.get(0)));
-        up.setGuid(list.get(1));
-        up.setFromTerminal(list.get(2));
-        up.setFromIp(list.get(3));
+        up.setUuid(list.get(0));
+        up.setFromTerminal(list.get(1));
+        up.setFromIp(list.get(2));
         return up;
     }
 

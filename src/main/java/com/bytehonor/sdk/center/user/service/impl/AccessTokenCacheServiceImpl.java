@@ -2,12 +2,13 @@ package com.bytehonor.sdk.center.user.service.impl;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.data.redis.core.RedisTemplate;
 
-import com.bytehonor.sdk.center.user.model.AccessToken;
 import com.bytehonor.sdk.center.user.service.AccessTokenCacheService;
 import com.bytehonor.sdk.center.user.util.RedisCacheUtils;
+import com.bytehonor.sdk.protocol.common.util.RandomUtils;
 
 public class AccessTokenCacheServiceImpl implements AccessTokenCacheService {
 
@@ -18,43 +19,41 @@ public class AccessTokenCacheServiceImpl implements AccessTokenCacheService {
     }
 
     @Override
-    public void save(Integer roleKey, String fromTerminal, String guid, String token, long expireAt) {
-        Objects.requireNonNull(roleKey, "roleKey");
+    public void save(String fromTerminal, String token, long expireAt) {
         Objects.requireNonNull(fromTerminal, "fromTerminal");
-        Objects.requireNonNull(guid, "guid");
         Objects.requireNonNull(token, "token");
-        String key = RedisCacheUtils.buildKey(roleKey, fromTerminal);
-        String value = RedisCacheUtils.buildValue(token, expireAt);
-        redisTemplate.opsForHash().put(key, guid, value);
+        String key = RedisCacheUtils.buildKey(fromTerminal, token);
+        long timeout = expireAt - System.currentTimeMillis() - RandomUtils.getInt(1111, 9999);
+        redisTemplate.opsForValue().setIfAbsent(key, String.valueOf(expireAt), timeout, TimeUnit.MILLISECONDS);
     }
 
     @Override
-    public void save(AccessToken token, long expireAt) {
-        Objects.requireNonNull(token, "accessToken");
+    public void remove(String fromTerminal, String token) {
+        Objects.requireNonNull(fromTerminal, "fromTerminal");
+        Objects.requireNonNull(token, "token");
 
-        save(token.getRoleKey(), token.getFromTerminal(), token.getGuid(), token.getToken(), expireAt);
+        String key = RedisCacheUtils.buildKey(fromTerminal, token);
+        redisTemplate.delete(key);
     }
 
     @Override
-    public void remove(AccessToken token) {
-        Objects.requireNonNull(token, "userToken");
-        Objects.requireNonNull(token.getRoleKey(), "roleKey");
-        Objects.requireNonNull(token.getFromTerminal(), "fromTerminal");
-        Objects.requireNonNull(token.getGuid(), "guid");
+    public boolean isEffective(String fromTerminal, String token) {
+        Objects.requireNonNull(fromTerminal, "fromTerminal");
+        Objects.requireNonNull(token, "token");
 
-        String key = RedisCacheUtils.buildKey(token.getRoleKey(), token.getFromTerminal());
-        redisTemplate.opsForHash().delete(key, token.getGuid());
-    }
+        String key = RedisCacheUtils.buildKey(fromTerminal, token);
+        Object val = redisTemplate.opsForValue().get(key);
+        if (val == null) {
+            return false;
+        }
+        long expireAt = 0L;
+        try {
+            expireAt = Long.valueOf((String) val);
+        } catch (Exception e) {
 
-    @Override
-    public Object get(AccessToken userToken) {
-        Objects.requireNonNull(userToken, "userToken");
-        Objects.requireNonNull(userToken.getRoleKey(), "roleKey");
-        Objects.requireNonNull(userToken.getFromTerminal(), "fromTerminal");
-        Objects.requireNonNull(userToken.getGuid(), "guid");
+        }
+        return expireAt > System.currentTimeMillis();
 
-        String key = RedisCacheUtils.buildKey(userToken.getRoleKey(), userToken.getFromTerminal());
-        return redisTemplate.opsForHash().get(key, userToken.getGuid());
     }
 
 }
