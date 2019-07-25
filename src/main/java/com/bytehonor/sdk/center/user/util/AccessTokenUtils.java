@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Base64Utils;
+import org.springframework.util.StringUtils;
 
 import com.bytehonor.sdk.protocol.common.util.MD5Utils;
 import com.bytehonor.sdk.protocol.common.util.RandomUtils;
@@ -23,9 +24,12 @@ public class AccessTokenUtils {
         if (LOG.isDebugEnabled()) {
             LOG.debug("Authentication:{}", token);
         }
+        if (StringUtils.isEmpty(token)) {
+            return null;
+        }
 
         if (check(token, fromTerminal)) {
-            throw new RuntimeException("Authentication is expired");
+            return null;
         }
         return token;
     }
