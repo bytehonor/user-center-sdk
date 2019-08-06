@@ -25,10 +25,12 @@ public class AccessTokenUtils {
             LOG.debug("Authentication:{}", token);
         }
         if (StringUtils.isEmpty(token)) {
+            LOG.error("token is null");
             return null;
         }
 
-        if (check(token, fromTerminal)) {
+        if (check(token, fromTerminal) == false) {
+            LOG.error("token:{}, fromTerminal:{} check == false", token, fromTerminal);
             return null;
         }
         return token;
@@ -66,6 +68,7 @@ public class AccessTokenUtils {
         String sign = dec.substring(34, dec.length());
         String md5 = MD5Utils.md5(new StringBuilder().append(text).append("+").append(fromTerminal).toString());
         if (md5.equals(sign) == false) {
+            LOG.error("md5 check faled");
             return false;
         }
         String val = text.substring(0, 13);
@@ -73,7 +76,7 @@ public class AccessTokenUtils {
         try {
             expireAt = Long.valueOf(val);
         } catch (Exception e) {
-
+            LOG.error("long time invalid", e);
         }
 
         return expireAt > System.currentTimeMillis();
