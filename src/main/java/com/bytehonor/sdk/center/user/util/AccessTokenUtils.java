@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.Base64Utils;
 import org.springframework.util.StringUtils;
 
-import com.bytehonor.sdk.protocol.common.util.MD5Utils;
-import com.bytehonor.sdk.protocol.common.util.RandomUtils;
+import com.bytehonor.sdk.basic.lang.util.MD5Utils;
+import com.bytehonor.sdk.basic.lang.util.RandomUtils;
 
 public class AccessTokenUtils {
 

@@ -1,6 +1,6 @@
 package com.bytehonor.sdk.center.user.util;
 
-import com.bytehonor.sdk.protocol.common.util.MD5Utils;
+import com.bytehonor.sdk.basic.lang.util.MD5Utils;
 
 public class RedisCacheUtils {
 

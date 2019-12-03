@@ -47,7 +47,7 @@ public class PasswordUtils {
             return new String(str);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(e.getMessage());
         }
     }
 
