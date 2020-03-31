@@ -1,13 +1,13 @@
 buildscript {
-	ext {
-		springBootVersion = '2.2.1.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+    ext {
+        springBootVersion = '2.2.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
 apply plugin: 'java'
@@ -17,21 +17,21 @@ apply plugin: 'io.spring.dependency-management'
 apply from: 'repository.gradle'
 
 group = 'com.bytehonor.sdk'
-version = '0.2.5'
+version = '0.2.6'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
 repositories {
-	mavenCentral()
-	maven { url "http://maven.huajietaojin.cn/repository/bytehonor-releases/" }
+    mavenCentral()
+    maven { url "http://maven.huajietaojin.cn/repository/bytehonor-releases/" }
 }
 
 
 dependencies {
-    implementation('com.bytehonor.sdk:lang-basic-sdk:0.1.8')
-	implementation('org.springframework.boot:spring-boot-starter-web')
-	implementation('org.springframework.boot:spring-boot-starter-data-redis')
-	annotationProcessor('org.springframework.boot:spring-boot-configuration-processor')
-	testImplementation('org.springframework.boot:spring-boot-starter-test')
+    implementation('com.bytehonor.sdk:lang-basic-sdk:0.1.9')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-data-redis')
+    annotationProcessor('org.springframework.boot:spring-boot-configuration-processor')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
