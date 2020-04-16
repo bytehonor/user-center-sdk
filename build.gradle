@@ -17,7 +17,7 @@ apply plugin: 'io.spring.dependency-management'
 apply from: 'repository.gradle'
 
 group = 'com.bytehonor.sdk'
-version = '0.2.6'
+version = '0.2.7'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
@@ -29,7 +29,7 @@ repositories {
 
 
 dependencies {
-    implementation('com.bytehonor.sdk:lang-basic-sdk:0.1.9')
+    implementation('com.bytehonor.sdk:lang-basic-sdk:0.1.10')
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-data-redis')
     annotationProcessor('org.springframework.boot:spring-boot-configuration-processor')
