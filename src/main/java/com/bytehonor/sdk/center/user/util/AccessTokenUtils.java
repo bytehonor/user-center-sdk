@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Base64Utils;
-import org.springframework.util.StringUtils;
 
-import com.bytehonor.sdk.basic.lang.util.MD5Utils;
-import com.bytehonor.sdk.basic.lang.util.RandomUtils;
+import com.bytehonor.sdk.lang.bytehonor.string.StringObject;
+import com.bytehonor.sdk.lang.bytehonor.util.MD5Utils;
+import com.bytehonor.sdk.lang.bytehonor.util.RandomUtils;
 
 public class AccessTokenUtils {
 
@@ -24,7 +24,7 @@ public class AccessTokenUtils {
         if (LOG.isDebugEnabled()) {
             LOG.debug("Authentication:{}", token);
         }
-        if (StringUtils.isEmpty(token)) {
+        if (StringObject.isEmpty(token)) {
             LOG.error("token is null");
             return null;
         }

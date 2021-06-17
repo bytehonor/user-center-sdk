@@ -1,8 +1,9 @@
 package com.bytehonor.sdk.center.user.util;
 
-import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +20,7 @@ public class AccessTokenUtilsTest {
             LOG.info("ok:{}, length:{}, token:{}", AccessTokenUtils.check(token, fromTerminal), token.length(), token);
 
         }
-        assertTrue("test", true);
+        assertTrue(true, "test");
     }
 
     @Test
@@ -28,7 +29,7 @@ public class AccessTokenUtilsTest {
         String token = "MTU2NTA5MDI1MDU2NF8xNTY1MDgzMDUwNTY0XzY0NjU5JmM1ZGE0ZDg3MGFkZTdlNDYzZjQzYTc1MzI0ZDIwMDI2";
         boolean isOk = AccessTokenUtils.check(token, fromTerminal);
         LOG.info("ok:{}, length:{}, token:{}", isOk, token.length(), token);
-        assertTrue("test", isOk);
+        assertTrue(isOk, "test");
     }
 
 }

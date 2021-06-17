@@ -6,9 +6,9 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.data.redis.core.RedisTemplate;
 
-import com.bytehonor.sdk.basic.lang.util.RandomUtils;
 import com.bytehonor.sdk.center.user.service.AccessTokenCacheService;
 import com.bytehonor.sdk.center.user.util.RedisCacheUtils;
+import com.bytehonor.sdk.lang.bytehonor.util.RandomUtils;
 
 public class AccessTokenCacheServiceImpl implements AccessTokenCacheService {
 

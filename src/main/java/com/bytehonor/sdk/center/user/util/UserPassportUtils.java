@@ -6,10 +6,9 @@ import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.util.StringUtils;
-
 import com.bytehonor.sdk.center.user.constant.UserHeaderKey;
 import com.bytehonor.sdk.center.user.model.UserPassport;
+import com.bytehonor.sdk.lang.bytehonor.string.StringObject;
 
 public class UserPassportUtils {
 
@@ -45,7 +44,7 @@ public class UserPassportUtils {
     public static UserPassport get(String val) {
         Objects.requireNonNull(val, "val");
         UserPassport up = new UserPassport();
-        if (StringUtils.isEmpty(val)) {
+        if (StringObject.isEmpty(val)) {
             return up;
         }
         List<String> list = split(val, CON);

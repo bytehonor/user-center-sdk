@@ -1,8 +1,9 @@
 package com.bytehonor.sdk.center.user.util;
 
-import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,14 +17,14 @@ public class UserPassportUtilsTest {
     public void testToString() {
         String src = UserPassportUtils.toString("guid", "fromTerminal", "fromIp");
         LOG.info("src:{}", src);
-        assertTrue("*testToString*", src != null);
+        assertTrue(src != null, "*testToString*");
     }
 
     @Test
     public void testGetString() {
         UserPassport up = UserPassportUtils.get("guid&fromTerminal&fromIp");
         LOG.info("getUuid:{}", up.getUuid());
-        assertTrue("*testToString*", up.getUuid() != null);
+        assertTrue(up.getUuid() != null, "*testToString*");
     }
 
     @Test
@@ -43,6 +44,6 @@ public class UserPassportUtilsTest {
         long cost2 = System.nanoTime() - start2;
 
         LOG.info("cost1:{}, cost2:{}, diff:{}", cost1, cost2, (cost1 - cost2));
-        assertTrue("*testTime*", true);
+        assertTrue(true, "*testTime*");
     }
 }
