@@ -1,2 +1,2 @@
-# bytehonor-ouath-sdk
-bytehonor-ouath-sdk
+# bytehonor-oauth-sdk
+bytehonor-oauth-sdk
