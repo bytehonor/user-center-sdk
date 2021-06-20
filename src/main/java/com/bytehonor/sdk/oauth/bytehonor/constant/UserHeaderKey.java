@@ -1,4 +1,4 @@
-package com.bytehonor.sdk.center.user.constant;
+package com.bytehonor.sdk.oauth.bytehonor.constant;
 public class UserHeaderKey {
 
 	/**

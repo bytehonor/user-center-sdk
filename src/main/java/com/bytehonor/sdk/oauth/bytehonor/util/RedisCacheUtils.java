@@ -1,4 +1,4 @@
-package com.bytehonor.sdk.center.user.util;
+package com.bytehonor.sdk.oauth.bytehonor.util;
 
 import com.bytehonor.sdk.lang.bytehonor.util.MD5Utils;
 

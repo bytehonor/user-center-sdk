@@ -1,4 +1,4 @@
-package com.bytehonor.sdk.center.user.service;
+package com.bytehonor.sdk.oauth.bytehonor.service;
 
 public interface AccessTokenCacheService {
 
