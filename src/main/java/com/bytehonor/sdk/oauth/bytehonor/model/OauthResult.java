@@ -1,6 +1,6 @@
 package com.bytehonor.sdk.oauth.bytehonor.model;
 
-public class OauthPassport {
+public class OauthResult {
 
     private String uuid;
 
@@ -10,21 +10,21 @@ public class OauthPassport {
 
     private Long timestamp;
 
-    public static OauthPassport permit(String uuid, Boolean admin) {
-        return new OauthPassport(uuid, true, admin);
+    public static OauthResult permit(String uuid, Boolean admin) {
+        return new OauthResult(uuid, true, admin);
     }
 
-    public static OauthPassport deny(String uuid, Boolean admin) {
-        return new OauthPassport(uuid, false, admin);
+    public static OauthResult deny(String uuid, Boolean admin) {
+        return new OauthResult(uuid, false, admin);
     }
 
-    public OauthPassport(String uuid, Boolean enabled, Boolean admin) {
+    public OauthResult(String uuid, Boolean enabled, Boolean admin) {
         this.uuid = uuid;
         this.enabled = enabled;
         this.admin = admin;
     }
 
-    public OauthPassport() {
+    public OauthResult() {
         this(null, null, null);
     }
 

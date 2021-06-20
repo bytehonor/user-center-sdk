@@ -3,7 +3,7 @@ package com.bytehonor.sdk.oauth.bytehonor.handler;
 import java.util.Objects;
 
 import com.bytehonor.sdk.oauth.bytehonor.constant.BytehonorTerminalEnum;
-import com.bytehonor.sdk.oauth.bytehonor.model.OauthPassport;
+import com.bytehonor.sdk.oauth.bytehonor.model.OauthResult;
 import com.bytehonor.sdk.oauth.bytehonor.model.OauthRequest;
 
 public class WebAdminOauthHandler implements OauthHandler {
@@ -14,10 +14,10 @@ public class WebAdminOauthHandler implements OauthHandler {
     }
 
     @Override
-    public OauthPassport handle(OauthRequest request) {
+    public OauthResult handle(OauthRequest request) {
         Objects.requireNonNull(request.getFromTerminal(), "fromTerminal");
         
-        return OauthPassport.permit(null, null);
+        return OauthResult.permit(null, null);
     }
 
 }

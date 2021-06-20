@@ -6,7 +6,7 @@ import java.util.Objects;
 import com.bytehonor.sdk.define.bytehonor.error.TokenExpiredExcption;
 import com.bytehonor.sdk.oauth.bytehonor.constant.BytehonorTerminalEnum;
 import com.bytehonor.sdk.oauth.bytehonor.model.AccessTokenBody;
-import com.bytehonor.sdk.oauth.bytehonor.model.OauthPassport;
+import com.bytehonor.sdk.oauth.bytehonor.model.OauthResult;
 import com.bytehonor.sdk.oauth.bytehonor.model.OauthRequest;
 import com.bytehonor.sdk.oauth.bytehonor.util.AccessTokenUtils;
 import com.bytehonor.sdk.oauth.bytehonor.util.OauthSignUtils;
@@ -19,7 +19,7 @@ public class WebVueOauthHandler implements OauthHandler {
     }
 
     @Override
-    public OauthPassport handle(OauthRequest request) {
+    public OauthResult handle(OauthRequest request) {
         Objects.requireNonNull(request.getFromTerminal(), "fromTerminal");
         Objects.requireNonNull(request.getPath(), "path");
         Objects.requireNonNull(request.getAccessToken(), "accessToken");
@@ -31,7 +31,7 @@ public class WebVueOauthHandler implements OauthHandler {
         if (expired.isAfter(body.getTime())) {
             throw new TokenExpiredExcption();
         }
-        return OauthPassport.permit(body.getUuid(), null);
+        return OauthResult.permit(body.getUuid(), null);
     }
 
 }
