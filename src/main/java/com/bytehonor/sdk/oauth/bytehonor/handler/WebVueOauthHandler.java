@@ -1,17 +1,20 @@
 package com.bytehonor.sdk.oauth.bytehonor.handler;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
+import com.bytehonor.sdk.define.bytehonor.constant.TimeConstants;
 import com.bytehonor.sdk.define.bytehonor.error.TokenExpiredExcption;
+import com.bytehonor.sdk.lang.bytehonor.util.LocalDateTimeUtils;
 import com.bytehonor.sdk.oauth.bytehonor.constant.BytehonorTerminalEnum;
 import com.bytehonor.sdk.oauth.bytehonor.model.AccessTokenBody;
-import com.bytehonor.sdk.oauth.bytehonor.model.OauthResult;
 import com.bytehonor.sdk.oauth.bytehonor.model.OauthRequest;
+import com.bytehonor.sdk.oauth.bytehonor.model.OauthResult;
 import com.bytehonor.sdk.oauth.bytehonor.util.AccessTokenUtils;
 import com.bytehonor.sdk.oauth.bytehonor.util.OauthSignUtils;
 
 public class WebVueOauthHandler implements OauthHandler {
+
+    private static final long EXPIRED = TimeConstants.HOUR * 2;
 
     @Override
     public BytehonorTerminalEnum terminal() {
@@ -24,11 +27,15 @@ public class WebVueOauthHandler implements OauthHandler {
         Objects.requireNonNull(request.getPath(), "path");
         Objects.requireNonNull(request.getAccessToken(), "accessToken");
         Objects.requireNonNull(request.getAccessSign(), "accessSign");
-
-        OauthSignUtils.checkSignV1(request.getPath(), request.getAccessToken(), request.getAccessSign());
+        long now = System.currentTimeMillis();
+        if (now - request.getAccessTime() > TimeConstants.HOUR) {
+            throw new TokenExpiredExcption();
+        }
+        OauthSignUtils.checkSign(request.getPath(), request.getAccessToken(), request.getAccessTime(),
+                request.getAccessSign());
         AccessTokenBody body = AccessTokenUtils.parse(request.getAccessToken());
-        LocalDateTime expired = LocalDateTime.now().minusHours(2L);
-        if (expired.isAfter(body.getTime())) {
+        long tokenTime = LocalDateTimeUtils.toTimestamp(body.getTime());
+        if (now - tokenTime > EXPIRED) {
             throw new TokenExpiredExcption();
         }
         return OauthResult.permit(body.getUuid(), null);

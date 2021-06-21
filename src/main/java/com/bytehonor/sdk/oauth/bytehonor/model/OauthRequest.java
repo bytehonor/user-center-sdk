@@ -12,6 +12,8 @@ public class OauthRequest {
 
     private String accessSign;
 
+    private Long accessTime;
+
     private String debug;
 
     public String getFromTerminal() {
@@ -60,6 +62,14 @@ public class OauthRequest {
 
     public void setMethod(String method) {
         this.method = method;
+    }
+
+    public Long getAccessTime() {
+        return accessTime;
+    }
+
+    public void setAccessTime(Long accessTime) {
+        this.accessTime = accessTime;
     }
 
 }
