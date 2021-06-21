@@ -6,6 +6,8 @@ public class OauthRequest {
 
     private String path;
 
+    private String method;
+
     private String accessToken;
 
     private String accessSign;
@@ -50,6 +52,14 @@ public class OauthRequest {
 
     public void setDebug(String debug) {
         this.debug = debug;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
     }
 
 }

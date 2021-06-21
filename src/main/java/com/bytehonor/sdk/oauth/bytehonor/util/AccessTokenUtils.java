@@ -26,7 +26,12 @@ public class AccessTokenUtils {
 
     public static AccessTokenBody parse(String accessToken) {
         Objects.requireNonNull(accessToken, "accessToken");
-        String dec = base64Decode(accessToken);
+        String dec = "";
+        try {
+            dec = base64Decode(accessToken);
+        } catch (Exception e) {
+            throw new ParameterExcption("accessToken is illegal");
+        }
         // uuid32_secret32
         if (dec == null || dec.length() != 65 || SPL != dec.charAt(32)) {
             throw new ParameterExcption("accessToken illegal");
