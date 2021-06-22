@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bytehonor.sdk.lang.bytehonor.util.MD5Utils;
 import com.bytehonor.sdk.oauth.bytehonor.model.AccessTokenBody;
 
 public class AccessTokenUtilsTest {
@@ -15,7 +14,7 @@ public class AccessTokenUtilsTest {
 
     @Test
     public void testMake() {
-        String uuid = MD5Utils.md5("123456");
+        String uuid = UserUuidUtils.uuidWeixin("wx4bbf894f0e5470ff", "o7Sh9w3IztzKJJvJk8xWf89v4nE8");
         String accessToken = AccessTokenUtils.make(uuid);
         LOG.info("accessToken:{}", accessToken);
 
