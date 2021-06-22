@@ -2,9 +2,8 @@ package com.bytehonor.sdk.oauth.bytehonor.util;
 
 import java.util.Objects;
 
-import com.bytehonor.sdk.define.bytehonor.code.StandardCode;
-import com.bytehonor.sdk.define.bytehonor.error.StandardException;
 import com.bytehonor.sdk.lang.bytehonor.util.MD5Utils;
+import com.bytehonor.sdk.oauth.bytehonor.error.OauthException;
 
 public class OauthSignUtils {
 
@@ -16,7 +15,7 @@ public class OauthSignUtils {
 
         String sign = MD5Utils.md5(path + accessToken + accessTime);
         if (sign.equalsIgnoreCase(accessSign) == false) {
-            throw new StandardException(StandardCode.FORBIDDEN, "FORBIDDEN");
+            throw new OauthException("accessSign illegal");
         }
     }
 }

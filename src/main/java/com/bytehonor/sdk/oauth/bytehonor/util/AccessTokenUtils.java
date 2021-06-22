@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import org.springframework.util.Base64Utils;
 
-import com.bytehonor.sdk.define.bytehonor.error.ParameterExcption;
+import com.bytehonor.sdk.oauth.bytehonor.error.OauthException;
 import com.bytehonor.sdk.oauth.bytehonor.model.AccessTokenBody;
 
 public class AccessTokenUtils {
@@ -30,15 +30,15 @@ public class AccessTokenUtils {
         try {
             dec = base64Decode(accessToken);
         } catch (Exception e) {
-            throw new ParameterExcption("accessToken is illegal");
+            throw new OauthException("accessToken decode failed");
         }
         // uuid32_secret32
         if (dec == null || dec.length() != 65 || SPL != dec.charAt(32)) {
-            throw new ParameterExcption("accessToken illegal");
+            throw new OauthException("accessToken length illegal");
         }
         LocalDateTime time = TimeSecretUtils.check32(dec.substring(33));
         if (time == null) {
-            throw new ParameterExcption("secret illegal");
+            throw new OauthException("secret illegal");
         }
         return new AccessTokenBody(dec.substring(0, 32), time);
     }
