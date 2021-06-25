@@ -1,27 +1,26 @@
 package com.bytehonor.sdk.oauth.bytehonor.model;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class AccessTokenBody {
 
     private String uuid;
 
-    private LocalDateTime time;
+    private Long expireAt;
 
-    public AccessTokenBody(String uuid, LocalDateTime time) {
+    public AccessTokenBody(String uuid, Long expireAt) {
         this.uuid = uuid;
-        this.time = time;
+        this.expireAt = expireAt;
     }
 
     public AccessTokenBody() {
         this(null, null);
     }
 
-    public static AccessTokenBody of(String uuid, LocalDateTime time) {
+    public static AccessTokenBody of(String uuid, Long expireAt) {
         Objects.requireNonNull(uuid, "uuid");
-        Objects.requireNonNull(time, "time");
-        return new AccessTokenBody(uuid, time);
+        Objects.requireNonNull(expireAt, "expireAt");
+        return new AccessTokenBody(uuid, expireAt);
     }
 
     public String getUuid() {
@@ -32,12 +31,12 @@ public class AccessTokenBody {
         this.uuid = uuid;
     }
 
-    public LocalDateTime getTime() {
-        return time;
+    public Long getExpireAt() {
+        return expireAt;
     }
 
-    public void setTime(LocalDateTime time) {
-        this.time = time;
+    public void setExpireAt(Long expireAt) {
+        this.expireAt = expireAt;
     }
 
 }

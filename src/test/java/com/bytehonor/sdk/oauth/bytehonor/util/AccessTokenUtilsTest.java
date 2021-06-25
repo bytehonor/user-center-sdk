@@ -19,7 +19,8 @@ public class AccessTokenUtilsTest {
         LOG.info("accessToken:{}", accessToken);
 
         AccessTokenBody body = AccessTokenUtils.parse(accessToken);
-        LOG.info("uuid:{}, time:{}", body.getUuid(), body.getTime());
+        
+        LOG.info("uuid:{}, time:{}", body.getUuid(), body.getExpireAt());
 
         assertTrue("test", uuid.equals(body.getUuid()));
     }
