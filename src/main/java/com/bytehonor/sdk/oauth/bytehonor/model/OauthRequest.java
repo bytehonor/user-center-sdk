@@ -14,7 +14,7 @@ public class OauthRequest {
 
     private Long accessTime;
 
-    private String debug;
+    private String browsToken;
 
     public String getFromTerminal() {
         return fromTerminal;
@@ -48,14 +48,6 @@ public class OauthRequest {
         this.accessSign = accessSign;
     }
 
-    public String getDebug() {
-        return debug;
-    }
-
-    public void setDebug(String debug) {
-        this.debug = debug;
-    }
-
     public String getMethod() {
         return method;
     }
@@ -70,6 +62,14 @@ public class OauthRequest {
 
     public void setAccessTime(Long accessTime) {
         this.accessTime = accessTime;
+    }
+
+    public String getBrowsToken() {
+        return browsToken;
+    }
+
+    public void setBrowsToken(String browsToken) {
+        this.browsToken = browsToken;
     }
 
 }
