@@ -53,11 +53,14 @@ public class AccessTokenUtils {
 
     public static String base64Encode(String src) {
         Objects.requireNonNull(src, "src");
-        return Base64Utils.encodeToUrlSafeString(src.getBytes());
+        String base = Base64Utils.encodeToUrlSafeString(src.getBytes());
+        base = base.replaceAll("=", "_");
+        return base;
     }
 
-    public static String base64Decode(String src) {
-        Objects.requireNonNull(src, "src");
-        return new String(Base64Utils.decodeFromUrlSafeString(src));
+    public static String base64Decode(String base) {
+        Objects.requireNonNull(base, "base");
+        base = base.replaceAll("_", "=");
+        return new String(Base64Utils.decodeFromUrlSafeString(base));
     }
 }
