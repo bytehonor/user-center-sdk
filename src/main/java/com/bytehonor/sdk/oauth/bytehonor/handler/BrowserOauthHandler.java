@@ -19,6 +19,7 @@ public class BrowserOauthHandler implements OauthHandler {
     @Override
     public OauthResult handle(OauthRequest request) {
         Objects.requireNonNull(request.getBrowsToken(), "browsToken");
+        
         AccessTokenBody body = AccessTokenUtils.parse(request.getBrowsToken());
         if (body.getExpireAt() < System.currentTimeMillis()) {
             throw new TokenExpiredExcption();

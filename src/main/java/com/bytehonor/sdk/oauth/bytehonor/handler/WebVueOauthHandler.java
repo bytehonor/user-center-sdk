@@ -23,12 +23,13 @@ public class WebVueOauthHandler implements OauthHandler {
         Objects.requireNonNull(request.getFromTerminal(), "fromTerminal");
         Objects.requireNonNull(request.getPath(), "path");
         Objects.requireNonNull(request.getAccessToken(), "accessToken");
-        Objects.requireNonNull(request.getAccessSign(), "accessSign");
         long now = System.currentTimeMillis();
-        if (now - request.getAccessTime() > TimeConstants.HOUR) {
-            throw new TokenExpiredExcption();
-        }
         if (request.getStrict()) {
+            Objects.requireNonNull(request.getAccessSign(), "accessSign");
+            Objects.requireNonNull(request.getAccessTime(), "accessTime");
+            if (now - request.getAccessTime() > TimeConstants.HOUR) {
+                throw new TokenExpiredExcption();
+            }
             OauthSignUtils.checkSign(request.getPath(), request.getAccessToken(), request.getAccessTime(),
                     request.getAccessSign());
         }
