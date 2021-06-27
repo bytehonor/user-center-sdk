@@ -2,6 +2,8 @@ package com.bytehonor.sdk.oauth.bytehonor.model;
 
 public class OauthRequest {
 
+    private Boolean strict;
+
     private String fromTerminal;
 
     private String path;
@@ -15,6 +17,18 @@ public class OauthRequest {
     private Long accessTime;
 
     private String browsToken;
+    
+    public OauthRequest() {
+        this.strict = true;
+    }
+
+    public Boolean getStrict() {
+        return strict;
+    }
+
+    public void setStrict(Boolean strict) {
+        this.strict = strict;
+    }
 
     public String getFromTerminal() {
         return fromTerminal;

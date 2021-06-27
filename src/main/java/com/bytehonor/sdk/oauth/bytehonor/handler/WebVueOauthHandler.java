@@ -28,8 +28,10 @@ public class WebVueOauthHandler implements OauthHandler {
         if (now - request.getAccessTime() > TimeConstants.HOUR) {
             throw new TokenExpiredExcption();
         }
-        OauthSignUtils.checkSign(request.getPath(), request.getAccessToken(), request.getAccessTime(),
-                request.getAccessSign());
+        if (request.getStrict()) {
+            OauthSignUtils.checkSign(request.getPath(), request.getAccessToken(), request.getAccessTime(),
+                    request.getAccessSign());
+        }
         AccessTokenBody body = AccessTokenUtils.parse(request.getAccessToken());
         if (body.getExpireAt() < now) {
             throw new TokenExpiredExcption();
