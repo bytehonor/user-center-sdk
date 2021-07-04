@@ -1,5 +1,9 @@
 package com.bytehonor.sdk.oauth.bytehonor.model;
 
+/**
+ * @author lijianqiang
+ *
+ */
 public class OauthResult {
 
     private String uuid;

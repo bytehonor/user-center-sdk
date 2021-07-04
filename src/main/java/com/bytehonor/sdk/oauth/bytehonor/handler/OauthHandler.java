@@ -4,6 +4,10 @@ import com.bytehonor.sdk.oauth.bytehonor.constant.BytehonorTerminalEnum;
 import com.bytehonor.sdk.oauth.bytehonor.model.OauthResult;
 import com.bytehonor.sdk.oauth.bytehonor.model.OauthRequest;
 
+/**
+ * @author lijianqiang
+ *
+ */
 public interface OauthHandler {
 
     public BytehonorTerminalEnum terminal();

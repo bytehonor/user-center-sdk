@@ -1,5 +1,9 @@
 package com.bytehonor.sdk.oauth.bytehonor.model;
 
+/**
+ * @author lijianqiang
+ *
+ */
 public class OauthRequest {
 
     private Boolean strict;
